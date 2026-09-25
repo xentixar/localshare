@@ -8,7 +8,7 @@ import (
 	"xentixar/localshare/internals/cli/commands"
 )
 
-var available_commands = []string{
+var availableCommands = []string{
 	"help",
 	"share",
 }
@@ -19,7 +19,7 @@ func Execute() {
 }
 
 func parse(args []string) {
-	if len(args) == 0 || args[0] == "help" || !slices.Contains(available_commands, args[0]) {
+	if len(args) == 0 || args[0] == "help" || !slices.Contains(availableCommands, args[0]) {
 		commands.Help()
 	} else if args[0] == "share" {
 		commands.Share()
