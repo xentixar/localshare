@@ -6,14 +6,13 @@ A cli tool that hosts a file over that LAN and user can get the file.
 - User starts a daemon using the following command
 
 ```bash
-localshare share ./photo.png
+localshare share --files ./photo.png
 ```
 
 - It starts a http server in some port and then shows the url and a qr from where other devices in the LAN access it.
 
 ### Commands
-1. password
-2. help
-3. list
-4. share
-5. view
+1. help
+2. list
+3. share
+4. view

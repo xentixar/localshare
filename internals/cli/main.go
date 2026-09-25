@@ -22,6 +22,12 @@ func parse(args []string) {
 	if len(args) == 0 || args[0] == "help" || !slices.Contains(availableCommands, args[0]) {
 		commands.Help()
 	} else if args[0] == "share" {
-		commands.Share()
+		if len(args) < 3 {
+			commands.ShareHelp()
+			return
+		}
+
+		args := args[1:]
+		commands.Share(args)
 	}
 }
