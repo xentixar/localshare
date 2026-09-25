@@ -14,5 +14,3 @@ localshare share --files ./photo.png
 ### Commands
 1. help
 2. list
-3. share
-4. view
