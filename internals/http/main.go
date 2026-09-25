@@ -4,11 +4,15 @@ package http
 import (
 	"fmt"
 	"mime"
+	"net"
 	"net/http"
 	"os"
 	"path/filepath"
 	"slices"
 	"strconv"
+	"strings"
+
+	"xentixar/localshare/internals/shared"
 )
 
 func Start(port int, password string, files []string) {
@@ -52,7 +56,25 @@ func Start(port int, password string, files []string) {
 		Handler: mux,
 	}
 
-	if err := server.ListenAndServe(); err != http.ErrServerClosed {
+	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
+	if err != nil {
+		fmt.Printf("Failed to start server: %v", err)
+		return
+	}
+
+	ipAddress := shared.GetLocalIP()
+
+	if strings.Contains(ipAddress, "192.168.") {
+		fmt.Println()
+		fmt.Println("Open this URL on another device connected to the same LAN: ")
+		fmt.Println("    " + "http://" + ipAddress + ":" + strconv.Itoa(port))
+		fmt.Println()
+		fmt.Println("Scan the QR code:")
+		fmt.Println()
+		shared.GenerateQr("http://" + ipAddress + ":" + strconv.Itoa(port))
+	}
+
+	if err := server.Serve(listener); err != nil && err != http.ErrServerClosed {
 		fmt.Printf("Server failed: %v", err)
 	}
 }
