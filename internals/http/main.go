@@ -6,7 +6,6 @@ import (
 	"mime"
 	"net"
 	"net/http"
-	"os"
 	"path/filepath"
 	"slices"
 	"strconv"
@@ -40,7 +39,6 @@ func Start(port int, password string, files []string) {
 
 		if password != "" {
 			if addPasswordProtection(password, w, r) {
-				os.Exit(1)
 				download(path, files, w, r)
 				return
 			} else {
