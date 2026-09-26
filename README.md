@@ -1,6 +1,6 @@
 # Localshare - temporary file sharing over your LAN
 
-A cli tool that hosts a files over the LAN and so that other users can access them.
+A cli tool that hosts files over the LAN and so that other users can access them.
 
 ### How it works
 - This commands starts a http server with default port 8092 and creates a `GET /` route with all the files linked which are passed to the `--files` flag.
@@ -15,14 +15,9 @@ localshare share --files photo.png
 
 ### Available flags
 share
-  - --files <paths...>
-      Files to share.
-      Accepts multiple files.
-  - --password <password>
-      Protect the shared files with a password.
-  - --port <port>
-      Port to host the sharing server on.
-      Default: 8092
+  - --files <paths...>      Files to share.Accepts multiple files.
+  - --password <password>   Protect the shared files with a password.
+  - --port <port>           Port to host the sharing server on. Default: 8092
 
 ### Installation
 1. Clone the repo
